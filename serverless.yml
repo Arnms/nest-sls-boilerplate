@@ -1,0 +1,23 @@
+service:
+  name: nest-sls-boilerplate
+
+plugins:
+  - serverless-express
+  - serverless-offline
+  # - serverless-webpack
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  index:
+    handler: dist/main.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
